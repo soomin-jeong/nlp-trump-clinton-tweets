@@ -6,8 +6,8 @@ library(tm)
 library(wordcloud2)
 
 # getting the preprocessed dataset
-tweets_trump = get_trump_tweets()
-tweets_clinton = get_clinton_tweets()
+tweets_trump = get_trump_tweets(organic_twt_only = TRUE)
+tweets_clinton = get_clinton_tweets(organic_twt_only = TRUE)
 docs_trump <- Corpus(VectorSource(tweets_trump))
 docs_clinton <- Corpus(VectorSource(tweets_clinton))
 
