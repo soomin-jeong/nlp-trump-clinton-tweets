@@ -1,6 +1,9 @@
 # setting the working directory and loading packages
 setwd('/Users/JeongSooMin/Documents/workspace/nlp-trump-clinton-tweets')
+
+install.packages('janitor')
 source('preprocess_data.R')
+
 library(textcat)
 library(plyr)
 
@@ -9,17 +12,25 @@ get_languages <- function(tweets){
   return(languages)
 }
 
-tweets_clinton <- get_clinton_tweets()
-tweets_trump <- get_trump_tweets()
+detect_lang_and_create_df <- function(tweets){
+  lang = get_languages(tweets)
+  tweets$lang = lang 
+  return (tweets)
+}
 
-lang_clinton = get_languages(tweets_clinton)
-lang_trump = get_languages(tweets_trump)
+lang_clinton <- get_clinton_tweets(include_empty_twt = FALSE) %>% detect_lang_and_create_df()
+lang_trump <- get_trump_tweets(include_empty_twt = FALSE) %>% detect_lang_and_create_df()
+lang_clinton_cnt = table(lang_clinton$lang)
+lang_trump_cnt = table(lang_trump$lang)
 
-lang_clinton_cnt = table(lang_clinton)
-lang_trump_cnt = table(lang_trump)
 
 # What Spanish tweets did Clinton make?
-tweets_clinton$text[which(lang_clinton %in% ('es'))]
+filter(tweets_clinton, lang=='es')$text
 
 # What Spanish tweets did Trump make?
-tweets_trump$text[which(lang_trump %in% ('es'))]
+filter(tweets_trump, lang=='es')$text
+
+# How many retweets did thet get in each language?
+rtw_table_clinton = aggregate(tweets_clinton$retweet_count, by=list(tweets_clinton$lang), FUN=sum)
+rtw_table_trump = aggregate(tweets_trump$retweet_count, by=list(tweets_trump$lang), FUN=sum)
+

@@ -3,11 +3,7 @@ setwd('/Users/JeongSooMin/Documents/workspace/nlp-trump-clinton-tweets')
 source('preprocess_data.R')
 
 library(tm)
-library(ggplot2)
-library(wordcloud)
-library(RWeka)
-library(reshape2)
-library(dplyr)
+library(wordcloud2)
 
 # getting the preprocessed dataset
 tweets_trump = get_trump_tweets()
@@ -15,7 +11,7 @@ tweets_clinton = get_clinton_tweets()
 docs_trump <- Corpus(VectorSource(tweets_trump))
 docs_clinton <- Corpus(VectorSource(tweets_clinton))
 
-# cleaning the text
+# cleaning the text in the form of Corpus (in the library 'tm')
 clean_the_data <- function(docs){
   docs <- docs %>%
     tm_map(removeNumbers) %>%
@@ -39,5 +35,5 @@ tweets_words <-  tweets %>%
 words <- tweets_words %>% count(word, sort=TRUE)
 
 
-set.seed(1234) # for reproducibility 
-wordcloud(words = df$word, freq = df$freq, min.freq = 1, max.words=200, random.order=FALSE, rot.per=0.35, colors=brewer.pal(8, "Dark2"))
+set.seed(1234)
+wordcloud2(data=df, size=5, color='random-dark')

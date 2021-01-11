@@ -15,7 +15,7 @@ count(raw_data, "user")
 aggregate(raw_data$retweet_count, by=list(handle=raw_data$user), FUN=sum)
 
 # which tweets got the most retweets for each candidate?
-tweet_clinton = get_clinton_tweets()
+tweet_clinton = get_clinton_tweets() 
 tweet_trump = get_trump_tweets()
 
 most_retweeted <- function(tweets, count=10){
@@ -25,3 +25,6 @@ most_retweeted <- function(tweets, count=10){
 
 most_retweeted_clinton = most_retweeted(tweet_clinton)
 most_retweeted_trump = most_retweeted(tweet_trump)
+
+most_retweeted_clinton
+most_retweeted_trump
