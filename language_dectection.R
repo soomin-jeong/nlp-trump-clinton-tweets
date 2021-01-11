@@ -35,4 +35,7 @@ rtw_table_clinton = aggregate(tweets_clinton$retweet_count, by=list(tweets_clint
 rtw_table_trump = aggregate(tweets_trump$retweet_count, by=list(tweets_trump$lang), FUN=sum)
 
 # What were the languages of their most retweeted tweets?
-detect_lang_and_create_df(most_retweeted_clinton[0])
+rt100_clinton = detect_lang_and_create_df(head(most_retweeted_clinton, 100))
+table(rt100_clinton$lang)
+rt100_trump = detect_lang_and_create_df(head(most_retweeted_trump, 100))
+table(rt100_trump$lang)

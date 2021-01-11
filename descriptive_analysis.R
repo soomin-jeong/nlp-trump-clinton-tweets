@@ -38,11 +38,39 @@ retweets_trump = filter(tweet_trump, is_retweet == "True")
 nrow(retweets_clinton)
 nrow(retweets_trump)
 
-
-
 # how many replies did they make?
 replies_clinton = filter(tweet_clinton, !is.na(in_reply_to_status_id))
 replies_trump = filter(tweet_trump, !is.na(in_reply_to_status_id))
 
 nrow(replies_clinton)
 nrow(replies_trump)
+
+# which word did they mention the most?
+most_frequent_words <- function(tweets){
+  processed_tweets = tweets %>%
+    select(text) %>%
+    unnest_tokens(word, text) %>%
+    anti_join(stop_words)
+  
+  return (processed_tweets %>% 
+            dplyr::count(word, sort=TRUE) %>%
+            top_n(15) %>%
+            mutate(word = reorder(word, n)) %>%
+            ggplot(aes(x = word, y = n)) +
+            geom_col() +
+            xlab(NULL) +
+            coord_flip() +
+            labs(y = "Count",
+                 x = "Unique words",
+                 title = "Most frequent words found in the tweets of Hilary Clinton",
+                 subtitle = "Stop words removed from the list"))
+}
+
+most_frequent_words(get_clinton_tweets(organic_twt_only = TRUE))
+most_frequent_words(get_trump_tweets(organic_twt_only = TRUE))
+
+most_frequent_words(most_favorite_clinton)
+most_frequent_words(most_favorite_trump)
+
+most_frequent_words(retweets_clinton)
+most_frequent_words(retweets_trump)
