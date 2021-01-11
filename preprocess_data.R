@@ -36,9 +36,9 @@ get_raw_data <- function(){
 
 get_organic_tweets <- function(tweets){
   # Remove retweets
-  organic_tweets <- tweets[tweets$is_retweet==FALSE, ] 
+  organic_tweets <- tweets[tweets$is_retweet=='False', ] 
   # Remove replies
-  organic_tweets <- subset(organic_tweets, is.na(tweets$reply_to_status_id)) 
+  organic_tweets <- subset(organic_tweets, is.na(organic_tweets$in_reply_to_user_id)) 
   return (organic_tweets)
 }
 
@@ -48,18 +48,20 @@ get_all_tweets <- function(include_rtw=TRUE){
   return(tweets)
 }
 
-get_trump_tweets <- function(include_empty_twt=TRUE){
+get_trump_tweets <- function(organic_twt_only=FALSE, include_empty_twt=TRUE){
   if(include_empty_twt == FALSE){
     tweets_trump = filter(tweets_trump, text != '')}
-  tweets_trump = get_organic_tweets(tweets_trump)
+  if(organic_twt_only == TRUE){
+    tweets_trump = get_organic_tweets(tweets_trump)}
   tweets_trump = preprocess_tweets(tweets_trump)
   return(tweets_trump)
 }
 
-get_clinton_tweets <- function(include_empty_twt=TRUE){
+get_clinton_tweets <- function(organic_twt_only=FALSE, include_empty_twt=TRUE){
   if(include_empty_twt == FALSE){
     tweets_clinton = filter(tweets_clinton, text != '')}
-  tweets_clinton = get_organic_tweets(tweets_clinton)
+  if(organic_twt_only == TRUE){
+    tweets_clinton = get_organic_tweets(tweets_clinton)}
   tweets_clinton = preprocess_tweets(tweets_clinton)
   return(tweets_clinton)
 }
