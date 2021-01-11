@@ -1,8 +1,8 @@
 # setting the working directory and loading packages
 setwd('/Users/JeongSooMin/Documents/workspace/nlp-trump-clinton-tweets')
 
-install.packages('janitor')
 source('preprocess_data.R')
+source('descriptive_analysis.R')
 
 library(textcat)
 library(plyr)
@@ -34,3 +34,5 @@ filter(tweets_trump, lang=='es')$text
 rtw_table_clinton = aggregate(tweets_clinton$retweet_count, by=list(tweets_clinton$lang), FUN=sum)
 rtw_table_trump = aggregate(tweets_trump$retweet_count, by=list(tweets_trump$lang), FUN=sum)
 
+# What were the languages of their most retweeted tweets?
+detect_lang_and_create_df(most_retweeted_clinton[0])
