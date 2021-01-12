@@ -4,6 +4,7 @@ setwd('/Users/JeongSooMin/Documents/workspace/nlp-trump-clinton-tweets')
 source('preprocess_data.R')
 
 library(plyr)
+library(tidytext)
 
 # how many tweets did they make?
 count(raw_data, "user")
@@ -71,8 +72,8 @@ most_frequent_words <- function(tweets, name){
 most_frequent_words(get_clinton_tweets(organic_twt_only = TRUE), "Clinton")
 most_frequent_words(get_trump_tweets(organic_twt_only = TRUE), "Trump")
 
-most_frequent_words(most_favorite_clinton)
-most_frequent_words(most_favorite_trump)
+most_frequent_words(most_favorite_clinton, "Clinton")
+most_frequent_words(most_favorite_trump, "Trump")
 
-most_frequent_words(retweets_clinton)
-most_frequent_words(retweets_trump)
+most_frequent_words(retweets_clinton, "Clinton")
+most_frequent_words(retweets_trump, "Trump")

@@ -12,7 +12,7 @@ install.packages(c("tidyverse",
                    "ggplot2",
                    "scales",
                    "plyr",
-                   "textcat",
+                   "textcat"
                    ))
 
 install.packages("openNLPmodels.en", repos = "http://datacube.wu.ac.at")

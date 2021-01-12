@@ -16,9 +16,6 @@ NAME_CLINTON = "HillaryClinton"
 tweets_trump = filter(raw_data, user == NAME_TRUMP)
 tweets_clinton = filter(raw_data, user == NAME_CLINTON)
 
-new = preprocess_tweets(tweets_clinton)
-new$text[1]
-
 preprocess_tweets <- function(tweets){
   tweets$text <- gsub(" ?(f|ht)(tp)(s?)(://)(.*)[.|/](.*)", "", tweets$text) # remove multiple hyperlinks
   tweets$text <- gsub("@\\S*", "", tweets$text) # remove mentioning other accounts
