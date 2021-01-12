@@ -38,8 +38,22 @@ trump_sentiments = get_trump_tweets(organic_twt_only = TRUE) %>%
 summary(trump_sentiments)
 
 clinton_sentiment_sum = setNames(aggregate(clinton_sentiments$n, by=list(clinton_sentiments$value), FUN=sum), c("sentiment", "sum_value"))
-ggplot(clinton_sentiment_sum, aes(x =sentiment, y = sum_value)) + geom_bar(stat = "identity")
+ggplot(clinton_sentiment_sum, aes(x =sentiment, y = sum_value)) + geom_bar(stat = "identity") + 
+  labs(y = "Strength",
+       x = "Sentiments",
+       title = "Sentiments in the Tweets",
+       subtitle = " (Negative < 0 and Positive > 0)") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(plot.subtitle = element_text(hjust = 0.5))
+  
 
 trump_sentiment_sum = setNames(aggregate(trump_sentiments$n, by=list(trump_sentiments$value), FUN=sum), c("sentiment", "sum_value"))
-ggplot(trump_sentiment_sum, aes(x =sentiment, y = sum_value)) + geom_bar(stat = "identity")
+ggplot(trump_sentiment_sum, aes(x =sentiment, y = sum_value)) + geom_bar(stat = "identity") +
+  labs(y = "Strength",
+       x = "Sentiments",
+       title = "Sentiments in the Tweets",
+       subtitle = " (Negative < 0 and Positive > 0)") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(plot.subtitle = element_text(hjust = 0.5))
+
 

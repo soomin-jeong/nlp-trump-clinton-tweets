@@ -23,6 +23,8 @@ lang_trump <- get_trump_tweets(include_empty_twt = FALSE) %>% detect_lang_and_cr
 lang_clinton_cnt = table(lang_clinton$lang)
 lang_trump_cnt = table(lang_trump$lang)
 
+lang_clinton_cnt
+lang_trump_cnt
 
 # What Spanish tweets did Clinton make?
 filter(tweets_clinton, lang=='es')$text
