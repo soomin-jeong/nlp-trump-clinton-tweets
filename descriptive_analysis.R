@@ -17,11 +17,13 @@ tweet_trump = get_trump_tweets()
 
 most_retweeted <- function(tweets, count=10){
   tweets <- tweets[order(tweets$retweet_count, decreasing=FALSE),]
-  return (tweets)
+  return (head(tweets, count))
 }
 
 most_retweeted_clinton = most_retweeted(tweet_clinton)
 most_retweeted_trump = most_retweeted(tweet_trump)
+
+most_retweeted_clinton$text
 
 # which tweets got the most favorites?
 most_favorite <- function(tweets, count=10){

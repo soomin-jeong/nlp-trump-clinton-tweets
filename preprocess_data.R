@@ -10,14 +10,12 @@ raw_data = read.csv("data/tweets.csv", header=TRUE, stringsAsFactors = FALSE)
 summary(raw_data)
 names(raw_data)[names(raw_data) == "handle"] <- "user"
 
-filter(raw_data, user == NAME_CLINTON)$text[900]
 NAME_TRUMP = "realDonaldTrump"
 NAME_CLINTON = "HillaryClinton"
 
 tweets_trump = filter(raw_data, user == NAME_TRUMP)
 tweets_clinton = filter(raw_data, user == NAME_CLINTON)
 
-tweets_clinton$text[1]
 new = preprocess_tweets(tweets_clinton)
 new$text[1]
 
@@ -44,8 +42,8 @@ get_organic_tweets <- function(tweets){
 
 get_all_tweets <- function(include_rtw=TRUE){
   if(include_rtw == FALSE){
-    return(filter(tweets, is_retweet == FALSE))}
-  return(tweets)
+    return(filter(raw_data, is_retweet == FALSE))}
+  return(raw_data)
 }
 
 get_trump_tweets <- function(organic_twt_only=FALSE, include_empty_twt=TRUE){
