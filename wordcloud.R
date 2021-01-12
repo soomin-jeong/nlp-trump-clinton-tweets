@@ -4,7 +4,6 @@ source('preprocess_data.R')
 
 library(tm)
 library(wordcloud)
-library(wordcloud2)
 library(tidytext)
 
 # getting the preprocessed dataset

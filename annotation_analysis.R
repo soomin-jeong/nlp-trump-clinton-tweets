@@ -6,7 +6,7 @@ source('preprocess_data.R')
 
 library(rJava)
 
-# configured the memory up to 12G
+# configured the memory up to 15G
 .jinit(parameters="-Xmx15g")
 library(openNLP)
 library(NLP)
