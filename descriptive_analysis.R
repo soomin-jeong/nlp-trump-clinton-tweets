@@ -48,7 +48,7 @@ nrow(replies_clinton)
 nrow(replies_trump)
 
 # which word did they mention the most?
-most_frequent_words <- function(tweets){
+most_frequent_words <- function(tweets, name){
   processed_tweets = tweets %>%
     select(text) %>%
     unnest_tokens(word, text) %>%
@@ -64,12 +64,12 @@ most_frequent_words <- function(tweets){
             coord_flip() +
             labs(y = "Count",
                  x = "Unique words",
-                 title = "Most frequent words found in the tweets of Hilary Clinton",
+                 title = paste("Most frequent words found in", name, "'s", "tweets"),
                  subtitle = "Stop words removed from the list"))
 }
 
-most_frequent_words(get_clinton_tweets(organic_twt_only = TRUE))
-most_frequent_words(get_trump_tweets(organic_twt_only = TRUE))
+most_frequent_words(get_clinton_tweets(organic_twt_only = TRUE), "Clinton")
+most_frequent_words(get_trump_tweets(organic_twt_only = TRUE), "Trump")
 
 most_frequent_words(most_favorite_clinton)
 most_frequent_words(most_favorite_trump)
