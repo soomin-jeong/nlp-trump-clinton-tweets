@@ -13,8 +13,10 @@ All the required packages are listed in the `setup.R`. Please run the file to in
 
 ## Contents
 You can find the results of analysis by running r script in:
+```
 descriptive_analysis.R
 wordcloud.R 
 sentiment_analysis.R
 language_detection.R
 annotation_analysis.R
+```
