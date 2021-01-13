@@ -1,4 +1,7 @@
 
+# setting the working directory and loading packages
+setwd('/Users/JeongSooMin/Documents/workspace/nlp-trump-clinton-tweets')
+
 install.packages(c("tidyverse", 
                    "stringr", 
                    "tm", 

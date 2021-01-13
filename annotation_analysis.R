@@ -1,5 +1,3 @@
-# setting the working directory and loading packages
-setwd('/Users/JeongSooMin/Documents/workspace/nlp-trump-clinton-tweets')
 source('preprocess_data.R')
 
 # install.packages("openNLPmodels.en", repos = "http://datacube.wu.ac.at")

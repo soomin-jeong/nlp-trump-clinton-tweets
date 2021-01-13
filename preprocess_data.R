@@ -1,7 +1,4 @@
 
-# setting the working directory and loading packages
-setwd('/Users/JeongSooMin/Documents/workspace/nlp-trump-clinton-tweets')
-
 library(tidyverse)
 library(stringr)
 
