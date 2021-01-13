@@ -9,7 +9,11 @@ The dataset was collected by Ben Hamner at Kaggle team. It provides approximatel
 source: https://www.kaggle.com/benhamner/clinton-trump-tweets
 
 ## Installation
-All the required packages are listed in the `setup.R`. Please run the file to install the pakcages.
+- All the required packages are listed in the `setup.R`. Please run the file to install the pakcages.
+- Set your working directory in `preprocess_data.R` by replacing the code below.
+```
+setwd('/Users/JeongSooMin/Documents/workspace/nlp-trump-clinton-tweets')
+```
 
 ## Contents
 You can find the results of analysis by running r script in:
